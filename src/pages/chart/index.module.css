@@ -1,0 +1,21 @@
+.chart{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    span{
+        width: 100%;
+        font-size: 18px;
+        padding: 20px;
+        display: block;
+        text-align: center;
+    }
+}
+
+ .line,.pie,.liquid{
+    width: 100%;
+    background-color: #fff;
+} 
+
+

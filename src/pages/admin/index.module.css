@@ -1,0 +1,40 @@
+.admin{
+    display: flex;
+    min-height: 100vh;
+}
+
+.Sidebar{
+    background-color: #2f4999;
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.right{
+    background-color: #efefef;
+    flex: 1;
+        /* footer的位置问题 */
+        display: flex;
+        /* 新增：让右边区域成为flex容器 */
+        flex-direction: column;
+        /* 新增：垂直排列子元素 */
+}
+
+.Header{
+    background-color: white;
+    height: 80px;
+}
+
+.Content{
+    /* footer的位置问题 */
+    flex: 1;
+}
+
+.Footer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    color: #b6b5b5;
+    background-color: white;
+    /* border-top: 1px solid #999; */
+}

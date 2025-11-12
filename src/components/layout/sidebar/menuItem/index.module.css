@@ -1,0 +1,16 @@
+.MenuItem {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 30px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 60px;
+    background-color: #3c56a3;
+    color: rgb(206, 223, 237);
+}
+
+
+.MenuItem:hover {
+    background-color: rgb(85, 162, 217);
+}

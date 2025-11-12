@@ -1,0 +1,319 @@
+.Category {
+    background-color: #fff;
+    border-radius: 20px;
+    height: 540px;
+    /* padding: 30px; */
+    margin: 30px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+}
+
+.CategoryHeader {
+    width: 100%;
+    font-size: 18px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d3d2d2;
+
+    /* button {
+        width: 60px;
+        height: 30px;
+        font-size: 14px;
+        color: rgb(242, 241, 241);
+        background-color: #2a7fe0;
+        border: none;
+        border-radius: 6px;
+    } */
+}
+
+.CategoryMiddle {
+    height: 400px;
+    padding: 30px;
+    padding-bottom: 0;
+}
+
+.CategoryTable {
+    width: 98%;
+    border: 1px solid #d3d2d2;
+
+    th {
+        font-size: 18px;
+        background-color: #e7e7e7;
+    }
+
+    th,
+    td {
+        border: 1px solid #d3d2d2;
+        height: 66px;
+    }
+
+    td {
+        padding: 0 24px;
+    }
+}
+
+tbody tr:hover {
+    background-color: rgb(236, 247, 252);
+}
+
+.CategoryCRUD {
+    color: #1662b8
+}
+
+.CategoryPage {
+    display: flex;
+    justify-content: right;
+    gap: 5px;
+    /* 页码之间的间距 */
+    margin-right: 40px;
+
+    /* padding-bottom: 50px; */
+    /* list-style: none; */
+    a {
+        display: block;
+        padding: 8px 12px;
+        text-decoration: none;
+        color: #333;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    a:hover,
+    button:hover {
+        background-color: #f5f5f5;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+        color: #333;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+}
+
+.Prev,
+.Next {
+    font-weight: 500;
+}
+
+/* 修复弹窗样式 - 使其真正弹出覆盖页面 */
+/* .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    
+    backdrop-filter: blur(5px);
+    添加背景模糊效果
+}
+
+.modal {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalAppear 0.3s ease-out;
+    overflow: hidden;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+}
+
+.modalHeader h3 {
+    margin: 0;
+    color: white;
+}
+
+.closeBtn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+    line-height: 1;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.closeBtn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.modalBody {
+    padding: 1.5rem;
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #495057;
+}
+
+.formGroup input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.formGroup input:focus {
+    outline: none;
+    border-color: #6a11cb;
+    box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+}
+
+.modalFooter {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-top: 1px solid #eee;
+    background: #f8f9fa;
+}
+
+.cancelBtn,
+.confirmBtn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancelBtn {
+    background: #6c757d;
+    color: white;
+}
+
+.cancelBtn:hover {
+    background: #5a6268;
+}
+
+.confirmBtn {
+    background: #6a11cb;
+    color: white;
+}
+
+.confirmBtn:hover {
+    background: #5809b3;
+    transform: translateY(-2px);
+} */
+
+.modal {
+    position: fixed;
+    /* 关键：固定定位，不随页面滚动 */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    /* 很高的层级，确保在最上面 */
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContent {
+    background: white;
+    width: 30%;
+    height: 36%;
+    min-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.modalHeader {
+    height: 25%;
+    /* 子元素的背景色会覆盖父元素的圆角 */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 0 16px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #dbdbdb;
+
+    button {
+        font-size: 18px;
+        width: 24px;
+        height: 26px;
+    }
+}
+
+.modalMiddle {
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50%;
+    background: linear-gradient(#d6e6f8, #7bb0ec);
+
+    /* input {
+        border: 1px solid rgb(137, 138, 138);
+        border-radius: 4px;
+        width: 250px;
+        height: 40px;
+    } */
+}
+
+.modalFooter {
+    height: 25%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    padding-right: 10px;
+
+    button {
+        padding: 8px 12px;
+        background-color: #fff;
+        border: 1px solid #c3c0c0;
+        border-radius: 4px;
+    }
+}

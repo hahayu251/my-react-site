@@ -1,0 +1,13 @@
+.subtitle{
+    text-align: center;
+    font-size: 20px;
+    /* background-color: #263f8a; */
+    width: 100%;
+        line-height: 60px;
+        background-color: #3c56a3;
+        color: rgb(206, 223, 237);
+}
+
+.subtitle:hover{
+    background-color: rgb(85, 162, 217);
+}

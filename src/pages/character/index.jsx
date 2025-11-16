@@ -1,5 +1,6 @@
-import React,{useState} from 'react'
+import React from 'react'
 import Category from '../../components/common'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 export default function CharacterCategory() {
   const characterData=[
@@ -17,18 +18,23 @@ export default function CharacterCategory() {
     }
   ]
   // 变量提升
-  const [characters, setCharacters] = useState(characterData)
-
-  const handleAdd = (title) => {
+  // 使用自定义 Hook - 一行代码搞定！
+  const [characters, setCharacters] = useLocalStorage('characters_data', characterData)
+  
+  const handleAdd = (formData, closeModal) => {
     // 生成新ID
     const newId = characters.length > 0 ? String(Math.max(...characters.map(p => Number(p.id))) + 1) : '1'
     // 创建新品类对象
     const charactersToAdd = {
       id: newId,
-      title: title,
+      title: formData.title,
     }
     // 更新状态
     setCharacters(prev => [...prev, charactersToAdd])
+    // 关闭弹窗
+    if (closeModal) {
+      closeModal()
+    }
   }
 
   // 删除分类的回调函数

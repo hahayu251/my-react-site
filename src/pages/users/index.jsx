@@ -1,5 +1,6 @@
-import React , { useState } from 'react'
+import React from 'react'
 import Category from '../../components/common'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 export default function UsersCategory() {
 
@@ -60,18 +61,25 @@ export default function UsersCategory() {
     }
   ]
   // 变量提升
-  const [users, setUsers] = useState(usersData)
-
-  const handleAdd = (title) => {
+  // 使用自定义hook，一行搞定
+  const [users, setUsers] = useLocalStorage('users_data', usersData)
+  
+  const handleAdd = (formData, closeModal) => {
     // 生成新ID
     const newId = users.length > 0 ? String(Math.max(...users.map(p => Number(p.id))) + 1) : '1'
     // 创建新品类对象
     const usersToAdd = {
       id: newId,
-      title: title,
+      title: formData.title,
+      number: formData.number,
+      mail: formData.mail    
     }
     // 更新状态
     setUsers(prev => [...prev, usersToAdd])
+    // 关闭弹窗
+    if (closeModal) {
+      closeModal()
+    }
   }
 
   // 删除分类的回调函数（真正实现删除功能的）
@@ -84,22 +92,25 @@ export default function UsersCategory() {
 
   // 修改分类的回调函数
   const handleEdit = (item) => {
-    const newTitle = window.prompt('请输入新的用户名称', item.title).trim()
-    if (newTitle === null) return // 用户点击了取消
-    const newNumber = window.prompt('请输入新的电话号码', item.number).trim()
-    if (newNumber === null) return
-    const newEmail = window.prompt('请输入新的邮箱', item.email).trim()
-    if (newEmail === null) return
+    const newTitleInput = window.prompt('请输入新的用户名称', item.title).trim()
+    if (newTitleInput === null) return // 用户点击了取消
+    const newTitle = newTitleInput.trim();
+    const newNumberInput = window.prompt('请输入新的电话号码', item.number).trim()
+    if (newNumberInput === null) return
+    const newNumber = newNumberInput.trim();
+    const newMailInput = window.prompt('请输入新的邮箱', item.mail).trim()
+    if (newMailInput === null) return
+    const newMail = newMailInput.trim();
 
     // 检查是否为空
-    if (!newTitle || !newNumber || !newEmail) {
+    if (!newTitle || !newNumber || !newMail) {
       alert('用户名称、电话号码和邮箱都不能为空')
       return
     }
     // 检查是否与原来完全相同
     if (newTitle === item.title && 
         newNumber === item.number && 
-        newEmail === item.email) {
+        newMail === item.mail) {
       alert('修改后的信息与原来相同，无需修改')
       return
     }
@@ -110,9 +121,8 @@ export default function UsersCategory() {
     }
       // 更新品类
       setUsers(prev => 
-        prev.map(u => u.id === item.id ? { ...u, title: newTitle,number:newNumber,email:newEmail } : u)
+        prev.map(u => u.id === item.id ? { ...u, title: newTitle,number:newNumber,mail:newMail } : u)
       )
-      alert('修改成功！')
     }
 
   return (
@@ -154,14 +164,14 @@ export default function UsersCategory() {
             placeholder: '请输入用户姓名'
           },
           { 
-            key: 'phone', 
+            key: 'number', 
             label: '电话号码', 
             type: 'tel', 
             unique: true,
             placeholder: '请输入电话号码'
           },
           { 
-            key: 'email', 
+            key: 'mail', 
             label: '邮箱地址', 
             type: 'email', 
             unique: true,

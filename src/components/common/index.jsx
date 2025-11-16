@@ -105,12 +105,14 @@ const Category = ({
     })
 
     if (hasError) return
-    
+    // 生成完整的数据对象，包含 id 
+    const newItem = {
+    id: Date.now(), // 或者用更好的ID生成方式
+    ...formData     // 包含所有表单字段
+  }
     // 检查父组件是否传入了 onAdd 回调函数
     if (onAdd) {
-      onAdd(title, () => {
-        handleClose()
-      })
+     onAdd(formData, handleClose)
     } else {
       handleClose()
     }
@@ -145,6 +147,11 @@ const Category = ({
     if (column.render) {
       return column.render(item)
     }
+    // // 调试：检查数据是否存在
+    // const cellValue = item[column.key]
+    // if (cellValue === undefined) {
+    //   console.warn(`列 "${column.key}" 在数据中不存在:`, item)
+    // }
     // 默认渲染：安全地显示数据
     // !!!!!!!!!
     return item[column.key] || '-'

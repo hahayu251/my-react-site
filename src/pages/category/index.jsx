@@ -1,5 +1,6 @@
-import React , { useState } from 'react'
+import React from 'react'
 import Category from '../../components/common'
+import useLocalStorage from '../../hooks/useLocalStorage'
 
 export default function GoodsCategory() {
 
@@ -42,19 +43,24 @@ export default function GoodsCategory() {
     }
   ]
   // 变量提升
-  const [goods, setGoods] = useState(goodsData)
+  // 使用自定义 Hook - 一行代码搞定！
+  const [goods, setGoods] = useLocalStorage('goods_data', goodsData)
 
-  const handleAdd = (title) => {   
-    // 生成新ID
-    const newId = goods.length > 0 ? String(Math.max(...goods.map(p => Number(p.id))) + 1) : '1'
-    // 创建新品类对象
-    const goodsToAdd = {
-      id: newId,
-      title: title,
-    }
-    // 更新状态
-    setGoods(prev => [...prev, goodsToAdd])
+  const handleAdd = (formData, closeModal) => {
+  // 生成新ID
+  const newId = goods.length > 0 ? String(Math.max(...goods.map(p => Number(p.id))) + 1) : '1'
+  // 创建新品类对象
+  const goodsToAdd = {
+    id: newId,
+    title: formData.title,
   }
+  // 更新状态
+  setGoods(prev => [...prev, goodsToAdd])
+  // 关闭弹窗
+  if (closeModal) {
+    closeModal()
+  }
+}
 
   // 删除分类的回调函数
   const handleDelete = (item) => {
@@ -86,7 +92,6 @@ export default function GoodsCategory() {
 
   return (
     <div>
-
       <Category 
         title="分类列表"
         data={goods}
@@ -101,5 +106,5 @@ export default function GoodsCategory() {
         ]}
       />
     </div>
-  );
+  )
 }

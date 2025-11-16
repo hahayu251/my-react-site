@@ -43,7 +43,7 @@ export default function GoodsCategory() {
     }
   ]
   // 变量提升
-  // 使用自定义 Hook - 一行代码搞定！
+  // 使用自定义 Hook
   const [goods, setGoods] = useLocalStorage('goods_data', goodsData)
 
   const handleAdd = (formData, closeModal) => {
